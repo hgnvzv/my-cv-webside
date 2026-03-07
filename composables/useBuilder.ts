@@ -10,7 +10,13 @@ interface BuilderFormData {
   clientName: string;
   email: string;
   whatsapp: string;
-  systemType: "medical" | "restaurant" | "school" | "custom" | "";
+  systemType:
+    | "medical"
+    | "restaurant"
+    | "school"
+    | "custom"
+    | "internet_users"
+    | "";
   description: string;
   selectedModules: SelectedModule[];
 }
@@ -31,7 +37,13 @@ interface BuilderState {
   resetForm: () => void;
 }
 
-const SYSTEM_TYPES = ["medical", "restaurant", "school", "custom"] as const;
+const SYSTEM_TYPES = [
+  "medical",
+  "restaurant",
+  "school",
+  "custom",
+  "internet_users",
+] as const;
 
 export const useBuilder = (): BuilderState => {
   const currentStep = ref(1);

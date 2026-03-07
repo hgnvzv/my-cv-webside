@@ -2,38 +2,35 @@
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
-  <WhatsAppButton />
 </template>
 
 <script setup lang="ts">
 // Initialize auth state on app load
 const { fetchUser } = useAuth();
-const { locale } = useI18n();
-const { isDark } = useDarkMode();
+const { locale, setLocale } = useI18n();
 
-// Set RTL direction based on locale and initialize dark mode
-watchEffect(() => {
-  if (import.meta.client) {
-    document.documentElement.dir = locale.value === "ar" ? "rtl" : "ltr";
-    document.documentElement.lang = locale.value;
-  }
-});
-
+// Force Arabic locale on app load
 onMounted(() => {
   fetchUser();
+  setLocale("ar");
+  if (import.meta.client) {
+    document.documentElement.dir = "rtl";
+    document.documentElement.lang = "ar";
+  }
 });
 </script>
 
 <style>
-/* Global styles */
+/* Global styles with Cairo font */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  font-family: "Cairo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: #0b1120;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+  min-height: 100vh;
 }
 
 /* RTL Support */
@@ -41,28 +38,28 @@ body {
   text-align: right;
 }
 
-/* Custom scrollbar - Premium dark theme */
+/* Custom scrollbar - Light theme */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #6366f1 0%, #9333ea 100%);
-  border-radius: 3px;
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #818cf8 0%, #a855f7 100%);
+  background: linear-gradient(180deg, #2563eb 0%, #1e40af 100%);
 }
 
 /* Selection */
 ::selection {
-  background: rgba(99, 102, 241, 0.3);
-  color: #f1f5f9;
+  background: rgba(59, 130, 246, 0.3);
+  color: #1e293b;
 }
 </style>

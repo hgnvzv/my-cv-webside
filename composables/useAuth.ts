@@ -41,6 +41,7 @@ export const useAuth = (): AuthState => {
 
       const response = await $fetch<MeResponse>("/api/auth/me", {
         method: "GET",
+        credentials: "include", // Important: send cookies with request
       });
 
       if (response.success) {
@@ -62,6 +63,7 @@ export const useAuth = (): AuthState => {
       const response = await $fetch<LoginResponse>("/api/auth/login", {
         method: "POST",
         body: { email, password },
+        credentials: "include", // Important: send and receive cookies
       });
 
       if (response.success) {
@@ -82,6 +84,7 @@ export const useAuth = (): AuthState => {
 
       await $fetch("/api/auth/logout", {
         method: "POST",
+        credentials: "include", // Important: send cookies
       });
 
       user.value = null;

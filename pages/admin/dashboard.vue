@@ -1,29 +1,21 @@
 <template>
   <div class="p-6 lg:p-8">
     <!-- Header -->
-    <div class="flex items-center justify-between mb-8">
-      <div>
-        <h1 class="text-3xl font-bold text-dark-100">Dashboard</h1>
-        <p class="text-dark-400 mt-1">Manage your orders and system requests</p>
-      </div>
-      <div
-        class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-sm text-dark-400"
-      >
-        {{ currentDate }}
-      </div>
+    <div class="mb-8">
+      <h1 class="text-2xl font-bold text-slate-800">مرحباً بك 👋</h1>
+      <p class="text-slate-500 mt-1">إدارة طلبات الأنظمة من هنا</p>
     </div>
 
-    <!-- Stats -->
+    <!-- Stats Cards -->
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-      <div
-        class="p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-primary-500/30 transition-all"
-      >
+      <!-- Total -->
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
         <div class="flex items-center justify-between mb-4">
           <div
-            class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center"
+            class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center"
           >
             <svg
-              class="w-6 h-6 text-blue-400"
+              class="w-6 h-6 text-blue-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -36,23 +28,23 @@
               />
             </svg>
           </div>
-          <span class="text-xs text-dark-500 uppercase tracking-wider"
-            >Total</span
+          <span
+            class="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded-full"
+            >مجموع</span
           >
         </div>
-        <div class="text-3xl font-bold text-dark-100">{{ stats.total }}</div>
-        <div class="text-sm text-dark-500 mt-1">Total Orders</div>
+        <div class="text-3xl font-bold text-slate-800">{{ stats.total }}</div>
+        <div class="text-sm text-slate-500 mt-1">إجمالي الطلبات</div>
       </div>
 
-      <div
-        class="p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-green-500/30 transition-all"
-      >
+      <!-- New -->
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
         <div class="flex items-center justify-between mb-4">
           <div
-            class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center"
+            class="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center"
           >
             <svg
-              class="w-6 h-6 text-green-400"
+              class="w-6 h-6 text-green-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -61,30 +53,31 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
-                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
           </div>
-          <span class="flex items-center gap-1.5 text-xs text-green-400">
+          <span
+            class="flex items-center gap-1 text-xs font-semibold text-green-600 bg-green-50 px-2 py-1 rounded-full"
+          >
             <span
-              class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"
+              class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"
             ></span>
-            New
+            جديد
           </span>
         </div>
-        <div class="text-3xl font-bold text-dark-100">{{ stats.new }}</div>
-        <div class="text-sm text-dark-500 mt-1">New Orders</div>
+        <div class="text-3xl font-bold text-slate-800">{{ stats.new }}</div>
+        <div class="text-sm text-slate-500 mt-1">طلبات جديدة</div>
       </div>
 
-      <div
-        class="p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-yellow-500/30 transition-all"
-      >
+      <!-- In Progress -->
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
         <div class="flex items-center justify-between mb-4">
           <div
-            class="w-12 h-12 rounded-xl bg-yellow-500/20 flex items-center justify-center"
+            class="w-12 h-12 rounded-xl bg-yellow-50 flex items-center justify-center"
           >
             <svg
-              class="w-6 h-6 text-yellow-400"
+              class="w-6 h-6 text-yellow-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -97,23 +90,27 @@
               />
             </svg>
           </div>
-          <span class="text-xs text-yellow-400">Active</span>
+          <span
+            class="text-xs font-semibold text-yellow-600 bg-yellow-50 px-2 py-1 rounded-full"
+            >نشط</span
+          >
         </div>
-        <div class="text-3xl font-bold text-dark-100">
+        <div class="text-3xl font-bold text-slate-800">
           {{ stats.inProgress }}
         </div>
-        <div class="text-sm text-dark-500 mt-1">In Progress</div>
+        <div class="text-sm text-slate-500 mt-1">قيد التنفيذ</div>
       </div>
 
+      <!-- Revenue -->
       <div
-        class="p-6 rounded-2xl bg-gradient-to-br from-primary-500/20 to-accent-500/20 backdrop-blur-xl border border-primary-500/30"
+        class="bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl p-6 shadow-lg"
       >
         <div class="flex items-center justify-between mb-4">
           <div
-            class="w-12 h-12 rounded-xl bg-primary-500/30 flex items-center justify-center"
+            class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center"
           >
             <svg
-              class="w-6 h-6 text-primary-400"
+              class="w-6 h-6 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -126,55 +123,54 @@
               />
             </svg>
           </div>
-          <span class="text-xs text-primary-400">Revenue</span>
+          <span class="text-xs font-semibold text-blue-100">إيرادات</span>
         </div>
-        <div class="text-3xl font-bold text-dark-100">
+        <div class="text-3xl font-bold text-white">
           ${{ stats.revenue.toLocaleString() }}
         </div>
-        <div class="text-sm text-dark-400 mt-1">Total Revenue</div>
+        <div class="text-sm text-blue-100 mt-1">إجمالي الإيرادات</div>
       </div>
     </div>
 
-    <!-- Orders Table -->
+    <!-- Recent Orders Preview -->
     <div
-      class="rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 overflow-hidden"
+      class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden"
     >
-      <div class="p-6 border-b border-white/10">
-        <div
-          class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+      <div
+        class="p-6 border-b border-slate-100 flex items-center justify-between"
+      >
+        <h2 class="text-lg font-bold text-slate-800">آخر الطلبات</h2>
+        <NuxtLink
+          to="/admin/orders"
+          class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1"
         >
-          <h2 class="text-xl font-semibold text-dark-100">Recent Orders</h2>
-          <div class="flex items-center gap-3">
-            <select
-              v-model="statusFilter"
-              class="bg-dark-900/50 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all"
-            >
-              <option value="all">All Status</option>
-              <option value="New">New</option>
-              <option value="In Progress">In Progress</option>
-              <option value="Completed">Completed</option>
-            </select>
-          </div>
-        </div>
+          عرض الكل
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </NuxtLink>
       </div>
 
       <div v-if="loading" class="py-16 flex items-center justify-center">
         <LoadingSpinner />
       </div>
 
-      <OrdersTable
-        v-else-if="filteredOrders.length > 0"
-        :orders="filteredOrders"
-        @update-status="handleUpdateStatus"
-      />
-
-      <!-- Empty State -->
-      <div v-else class="text-center py-16">
+      <div v-else-if="recentOrders.length === 0" class="text-center py-16">
         <div
-          class="w-20 h-20 rounded-full bg-primary-500/10 flex items-center justify-center mx-auto mb-6"
+          class="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-4"
         >
           <svg
-            class="w-10 h-10 text-primary-400"
+            class="w-8 h-8 text-blue-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -187,19 +183,39 @@
             />
           </svg>
         </div>
-        <h3
-          class="text-xl font-semibold mb-2"
-          :class="[isDark ? 'text-dark-100' : 'text-dark-900']"
-        >
-          No Orders Yet
+        <h3 class="text-lg font-semibold text-slate-700 mb-1">
+          لا توجد طلبات بعد
         </h3>
-        <p
-          class="max-w-md mx-auto"
-          :class="[isDark ? 'text-dark-400' : 'text-dark-600']"
-        >
-          When customers submit system requests through the builder page, they
-          will appear here.
+        <p class="text-slate-500 text-sm">
+          ستظهر طلبات العملاء هنا بعد إرسالها
         </p>
+      </div>
+
+      <div v-else class="divide-y divide-slate-100">
+        <div
+          v-for="order in recentOrders"
+          :key="order.id"
+          class="flex items-center justify-between p-5 hover:bg-slate-50 transition-colors"
+        >
+          <div class="flex items-center gap-4">
+            <div
+              class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center"
+            >
+              <span class="text-blue-700 font-bold text-sm">{{
+                order.clientName.charAt(0)
+              }}</span>
+            </div>
+            <div>
+              <p class="font-semibold text-slate-800">{{ order.clientName }}</p>
+              <p class="text-sm text-slate-500">
+                {{ order.systemType }} • ${{
+                  Number(order.totalPrice).toLocaleString()
+                }}
+              </p>
+            </div>
+          </div>
+          <StatusBadge :status="order.status" />
+        </div>
       </div>
     </div>
   </div>
@@ -212,56 +228,19 @@ definePageMeta({
 });
 
 useHead({
-  title: "Dashboard - Mohammed Qassim Admin",
+  title: "لوحة التحكم - MQ Systems",
 });
 
-const { orders, loading, fetchOrders, updateOrderStatus } = useOrders();
-const { isDark } = useDarkMode();
+const { orders, loading, fetchOrders } = useOrders();
 
-const statusFilter = ref("all");
+const stats = computed(() => ({
+  total: orders.value.length,
+  new: orders.value.filter((o) => o.status === "New").length,
+  inProgress: orders.value.filter((o) => o.status === "In Progress").length,
+  revenue: orders.value.reduce((sum, o) => sum + Number(o.totalPrice), 0),
+}));
 
-const currentDate = computed(() => {
-  return new Date().toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-});
-
-const stats = computed(() => {
-  const total = orders.value.length;
-  const newOrders = orders.value.filter((o) => o.status === "New").length;
-  const inProgress = orders.value.filter(
-    (o) => o.status === "In Progress"
-  ).length;
-  const revenue = orders.value.reduce(
-    (sum, o) => sum + Number(o.totalPrice),
-    0
-  );
-
-  return {
-    total,
-    new: newOrders,
-    inProgress,
-    revenue,
-  };
-});
-
-const filteredOrders = computed(() => {
-  if (statusFilter.value === "all") {
-    return orders.value;
-  }
-  return orders.value.filter((o) => o.status === statusFilter.value);
-});
-
-const handleUpdateStatus = async (id: string, status: string) => {
-  try {
-    await updateOrderStatus(id, status);
-  } catch (error) {
-    console.error("Failed to update status:", error);
-  }
-};
+const recentOrders = computed(() => orders.value.slice(0, 5));
 
 onMounted(() => {
   fetchOrders();

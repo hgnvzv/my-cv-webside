@@ -14,26 +14,26 @@ export default defineNuxtConfig({
   i18n: {
     locales: [
       {
-        code: "en",
-        name: "English",
-        file: "en.json",
-        dir: "ltr",
-      },
-      {
         code: "ar",
         name: "العربية",
         file: "ar.json",
         dir: "rtl",
       },
+      {
+        code: "en",
+        name: "English",
+        file: "en.json",
+        dir: "ltr",
+      },
     ],
-    defaultLocale: "en",
+    defaultLocale: "ar",
     lazy: true,
     langDir: "locales",
     strategy: "no_prefix",
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: "i18n_locale",
-      fallbackLocale: "en",
+      fallbackLocale: "ar",
     },
   },
 
@@ -47,30 +47,42 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: "Mohammed Qassim - Full Stack Developer Portfolio",
+      title: "MQ Systems - حلول برمجية متكاملة",
       meta: [
         {
           name: "description",
           content:
-            "Professional portfolio and system builder platform by Mohammed, a Full Stack Developer specializing in Vue, Nuxt, Angular, and ASP.NET Core.",
+            "نقدم حلول برمجية متكاملة للشركات والأعمال - تطوير أنظمة مخصصة بأحدث التقنيات",
         },
         {
           name: "keywords",
           content:
-            "Mohammed, Full Stack Developer, Vue, Nuxt, Angular, ASP.NET Core, Portfolio, Web Development",
+            "تطوير برمجيات, أنظمة إدارية, تطبيقات ويب, تطبيقات موبايل, برمجة, العراق",
         },
         {
           property: "og:title",
-          content: "Mohammed Qassim - Full Stack Developer Portfolio",
+          content: "MQ Systems - حلول برمجية متكاملة",
         },
         {
           property: "og:description",
-          content: "Professional portfolio and system builder platform",
+          content: "نقدم حلول برمجية متكاملة للشركات والأعمال",
         },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
       ],
-      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+      link: [
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        {
+          rel: "preconnect",
+          href: "https://fonts.gstatic.com",
+          crossorigin: "",
+        },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap",
+        },
+      ],
     },
   },
 

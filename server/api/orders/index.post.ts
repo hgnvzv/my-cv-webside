@@ -1,11 +1,18 @@
 import { z } from "zod";
 import { prisma } from "../../utils/auth";
+import { sendNewOrderNotification } from "../../utils/telegram";
 
 const createOrderSchema = z.object({
   clientName: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
   whatsapp: z.string().min(5, "WhatsApp number is required"),
-  systemType: z.enum(["medical", "restaurant", "school", "custom"]),
+  systemType: z.enum([
+    "medical",
+    "restaurant",
+    "school",
+    "custom",
+    "internet_users",
+  ]),
   description: z.string().optional(),
   modules: z.array(
     z.object({
@@ -50,6 +57,18 @@ export default defineEventHandler(async (event) => {
       include: {
         modules: true,
       },
+    });
+
+    // Send Telegram notification
+    await sendNewOrderNotification({
+      id: order.id,
+      clientName: order.clientName,
+      email: order.email,
+      whatsapp: order.whatsapp,
+      systemType: order.systemType,
+      description: order.description,
+      totalPrice: order.totalPrice,
+      modules: order.modules,
     });
 
     return {

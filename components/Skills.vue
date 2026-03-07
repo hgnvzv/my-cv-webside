@@ -97,6 +97,30 @@ const skills = [
     progress: 85,
   },
   {
+    name: "Flutter",
+    iconFile: "flutter-svgrepo-com.svg",
+    levelKey: "skills.flutter",
+    progress: 85,
+  },
+  {
+    name: "Asp.net Core",
+    iconFile: "aspnet-core-svgrepo-com.svg",
+    levelKey: "skills.aspnetcore",
+    progress: 85,
+  },
+  {
+    name: "Angular",
+    iconFile: "angular-svgrepo-com.svg",
+    levelKey: "skills.angular",
+    progress: 85,
+  },
+  {
+    name: "MySQL",
+    iconFile: "mysql-svgrepo-com.svg",
+    levelKey: "skills.mysql",
+    progress: 80,
+  },
+  {
     name: "PostgreSQL",
     iconFile: "postgresql-logo-svgrepo-com.svg",
     levelKey: "skills.postgresql",

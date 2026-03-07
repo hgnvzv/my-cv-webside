@@ -4,45 +4,55 @@ import * as bcrypt from "bcryptjs";
 const prisma = new PrismaClient();
 
 const defaultPricingModules = [
-  // Medical System Modules
-  { name: "Authentication & Roles", price: 500, systemType: "medical" },
-  { name: "Dashboard", price: 400, systemType: "medical" },
-  { name: "Reports", price: 350, systemType: "medical" },
-  { name: "Notifications", price: 250, systemType: "medical" },
-  { name: "Patient Management", price: 600, systemType: "medical" },
-  { name: "Appointment Scheduling", price: 450, systemType: "medical" },
-  { name: "Medical Records", price: 550, systemType: "medical" },
-  { name: "Billing & Invoicing", price: 400, systemType: "medical" },
+  // Medical System Modules - النظام الطبي
+  { name: "تسجيل الدخول والصلاحيات", price: 500, systemType: "medical" },
+  { name: "لوحة التحكم الرئيسية", price: 400, systemType: "medical" },
+  { name: "التقارير والإحصائيات", price: 350, systemType: "medical" },
+  { name: "الإشعارات والتنبيهات", price: 250, systemType: "medical" },
+  { name: "إدارة المرضى", price: 600, systemType: "medical" },
+  { name: "حجز المواعيد", price: 450, systemType: "medical" },
+  { name: "السجلات الطبية", price: 550, systemType: "medical" },
+  { name: "الفواتير والمحاسبة", price: 400, systemType: "medical" },
 
-  // Restaurant System Modules
-  { name: "Authentication & Roles", price: 500, systemType: "restaurant" },
-  { name: "Dashboard", price: 400, systemType: "restaurant" },
-  { name: "Reports", price: 350, systemType: "restaurant" },
-  { name: "Notifications", price: 250, systemType: "restaurant" },
-  { name: "Orders Management", price: 500, systemType: "restaurant" },
-  { name: "Menu Management", price: 400, systemType: "restaurant" },
-  { name: "Table Reservation", price: 350, systemType: "restaurant" },
-  { name: "Kitchen Display", price: 450, systemType: "restaurant" },
+  // Restaurant System Modules - نظام المطاعم
+  { name: "تسجيل الدخول والصلاحيات", price: 500, systemType: "restaurant" },
+  { name: "لوحة التحكم الرئيسية", price: 400, systemType: "restaurant" },
+  { name: "التقارير والإحصائيات", price: 350, systemType: "restaurant" },
+  { name: "الإشعارات والتنبيهات", price: 250, systemType: "restaurant" },
+  { name: "إدارة الطلبات", price: 500, systemType: "restaurant" },
+  { name: "إدارة قائمة الطعام", price: 400, systemType: "restaurant" },
+  { name: "حجز الطاولات", price: 350, systemType: "restaurant" },
+  { name: "شاشة المطبخ", price: 450, systemType: "restaurant" },
 
-  // School System Modules
-  { name: "Authentication & Roles", price: 500, systemType: "school" },
-  { name: "Dashboard", price: 400, systemType: "school" },
-  { name: "Reports", price: 350, systemType: "school" },
-  { name: "Notifications", price: 250, systemType: "school" },
-  { name: "Student Management", price: 550, systemType: "school" },
-  { name: "Attendance Tracking", price: 400, systemType: "school" },
-  { name: "Grade Book", price: 450, systemType: "school" },
-  { name: "Fee Management", price: 400, systemType: "school" },
+  // School System Modules - نظام المدارس
+  { name: "تسجيل الدخول والصلاحيات", price: 500, systemType: "school" },
+  { name: "لوحة التحكم الرئيسية", price: 400, systemType: "school" },
+  { name: "التقارير والإحصائيات", price: 350, systemType: "school" },
+  { name: "الإشعارات والتنبيهات", price: 250, systemType: "school" },
+  { name: "إدارة الطلاب", price: 550, systemType: "school" },
+  { name: "تتبع الحضور والغياب", price: 400, systemType: "school" },
+  { name: "سجل الدرجات", price: 450, systemType: "school" },
+  { name: "إدارة الرسوم الدراسية", price: 400, systemType: "school" },
 
-  // Custom System Modules
-  { name: "Authentication & Roles", price: 500, systemType: "custom" },
-  { name: "Dashboard", price: 400, systemType: "custom" },
-  { name: "Reports", price: 350, systemType: "custom" },
-  { name: "Notifications", price: 250, systemType: "custom" },
-  { name: "Custom Module 1", price: 500, systemType: "custom" },
-  { name: "Custom Module 2", price: 500, systemType: "custom" },
-  { name: "Custom Module 3", price: 500, systemType: "custom" },
-  { name: "API Integration", price: 600, systemType: "custom" },
+  // Internet Users Management - إدارة مستخدمي الإنترنت
+  { name: "تسجيل الدخول والصلاحيات", price: 500, systemType: "internet_users" },
+  { name: "لوحة التحكم الرئيسية", price: 400, systemType: "internet_users" },
+  { name: "التقارير والإحصائيات", price: 350, systemType: "internet_users" },
+  { name: "الإشعارات والتنبيهات", price: 250, systemType: "internet_users" },
+  { name: "إدارة الاشتراكات", price: 500, systemType: "internet_users" },
+  { name: "إدارة الباقات", price: 400, systemType: "internet_users" },
+  { name: "الفواتير والدفع", price: 350, systemType: "internet_users" },
+  { name: "تتبع الاستخدام", price: 450, systemType: "internet_users" },
+
+  // Custom System Modules - نظام مخصص
+  { name: "تسجيل الدخول والصلاحيات", price: 500, systemType: "custom" },
+  { name: "لوحة التحكم الرئيسية", price: 400, systemType: "custom" },
+  { name: "التقارير والإحصائيات", price: 350, systemType: "custom" },
+  { name: "الإشعارات والتنبيهات", price: 250, systemType: "custom" },
+  { name: "موديول مخصص 1", price: 500, systemType: "custom" },
+  { name: "موديول مخصص 2", price: 500, systemType: "custom" },
+  { name: "موديول مخصص 3", price: 500, systemType: "custom" },
+  { name: "ربط مع أنظمة خارجية", price: 600, systemType: "custom" },
 ];
 
 async function main() {
