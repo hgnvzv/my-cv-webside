@@ -224,7 +224,12 @@ onMounted(() => {
 });
 
 const modules = computed(() => {
-  return pricingModules.value.filter((m) => m.systemType === props.systemType);
+  const filtered = pricingModules.value.filter((m) => m.systemType === props.systemType);
+  // Remove duplicates by name
+  const unique = filtered.filter((module, index, self) =>
+    index === self.findIndex((m) => m.name === module.name)
+  );
+  return unique;
 });
 
 const isModuleSelected = (moduleName: string) => {
