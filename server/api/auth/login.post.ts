@@ -28,7 +28,8 @@ export default defineEventHandler(async (event) => {
       console.error("Database error:", dbError);
       throw createError({
         statusCode: 500,
-        statusMessage: "Database connection failed. Please check your DATABASE_URL environment variable.",
+        statusMessage:
+          "Database connection failed. Please check your DATABASE_URL environment variable.",
       });
     }
 
