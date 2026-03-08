@@ -19,9 +19,18 @@ export default defineEventHandler(async (event) => {
     const validatedData = loginSchema.parse(body);
 
     // Find user in database
-    const user = await prisma.user.findUnique({
-      where: { email: validatedData.email },
-    });
+    let user;
+    try {
+      user = await prisma.user.findUnique({
+        where: { email: validatedData.email },
+      });
+    } catch (dbError: any) {
+      console.error("Database error:", dbError);
+      throw createError({
+        statusCode: 500,
+        statusMessage: "Database connection failed. Please check your DATABASE_URL environment variable.",
+      });
+    }
 
     if (!user) {
       throw createError({
